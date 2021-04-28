@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 const config = require('./../../config/config');
-const parser = require('xml2json');
+const xml2js = require('xml2js');
 
 module.exports = class SearchService {
 
@@ -17,8 +17,10 @@ module.exports = class SearchService {
               headers: { 'Content-Type': 'application/json' }
             }
         ).then(res => res.text()
-        ).then(xml => { 
-          let json = JSON.parse(parser.toJson(xml));
+        ).then(async xml => { 
+          const parser = new xml2js.Parser();
+          let json = await parser.parseStringPromise(xml);
+          //let json = JSON.parse(parser.toJson(xml));
           return resolve(json.GoodreadsResponse.search)
         }).catch(e => {
           return reject(e)
