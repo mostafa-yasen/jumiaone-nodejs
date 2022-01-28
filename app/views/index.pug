@@ -1,0 +1,35 @@
+html
+    head 
+        title= title 
+        link(rel="stylesheet", href="css/bootstrap.min.css")
+    body 
+        h1.text-center.my-5 Jumiaone Node JS 
+        #toolbox.d-flex.align-items-center.justify-content-center
+            #searchbox.m-2
+                span Search
+                input.form-control(type="search", name="q")#searchBar
+
+            #sort_options.m-2
+                span sort by 
+                select.form-control(name="sort_by")#sortByInput
+                    option Title
+                    option Average Rating
+                    option Original Publication Year
+
+            #order_option.m-2
+                span Order
+                br
+                input#asc_option(type="radio", name="order", value="Asc", checked=true)
+                label.m-2(for="asc_option") Asc
+                input#desc_option(type="radio", name="order", value="Desc")
+                label.m-2(for="desc_option") Desc
+
+        button.d-block.mx-auto.btn.btn-primary.w-25#searchBtn Search
+
+
+        .container#results
+            hr
+            br
+            br
+
+    script(src="js/index.js")

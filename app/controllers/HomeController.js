@@ -41,6 +41,7 @@ module.exports = class HomeController extends BaseController {
      * @param {function} next 
      */
     homeAction(req, res, next) {
-        res.status(200).json(super.sendResponse('SUCCESS', "You know for search books"));
+        // res.status(200).json(super.sendResponse('SUCCESS', "You know for search books"));
+        res.render("index", {title: "Home"});
     }
 }

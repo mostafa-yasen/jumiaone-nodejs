@@ -4,10 +4,21 @@ const bodyParser = require('body-parser');
 const InitControllers = require('./app/InitControllers');
 const logger = require('./services/logger');
 
+const path = require('path');
+
 var app = express();
 
 require('./middlewares')(app);
 app.use(bodyParser.json());
+
+app.engine('pug', require('pug').__express)
+app.set('views', path.join(__dirname, 'app/views'));
+app.set('view engine', 'pug')
+
+app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
+app.use('/js', express.static(__dirname + '/public/js'));
+
+app.use(express.static(__dirname + 'public'));
 
 var _resolve;
 var readyPromise = new Promise((resolve) => {
