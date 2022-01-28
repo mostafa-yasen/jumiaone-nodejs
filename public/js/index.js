@@ -1,7 +1,7 @@
 
 window.addEventListener('DOMContentLoaded', (event) => {
     async function search(q, sortBy, order) {
-        let result = await fetch(`/api/v1/search?q=${q}&sort_by=${sortBy}&order=${order}`)
+        let result = await fetch(`/api/v1/search?q=${q}&sort_by=${sortBy.toLowerCase().replace(" ", "_")}&order=${order.toLowerCase()}`)
             .then(response => response.json());
         console.log(result);
 
